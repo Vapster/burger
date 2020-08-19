@@ -16,7 +16,7 @@ const BurgerControls = (props) => {
         {controls.map((ele)=>{
             return <BurgerControl disable={props.disabledButtons[ele.type]} label={ele.label} key={ele.label} ingredient={ele.type} increaseIngredient={props.increaseIngredient} DecreaseIngredient={props.DecreaseIngredient}/>
         })}
-        <button className={classes.OrderButton} disabled={props.disableOrderNow}>ORDER NOW</button>
+        <button className={classes.OrderButton} onClick={props.orderNowClicked} disabled={props.disableOrderNow}>ORDER NOW</button>
     </div>)
 }
 

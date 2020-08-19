@@ -1,0 +1,18 @@
+.Ul{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.Ul li{
+    display: block;
+    height: 100%;
+    padding: 16px 10px;
+    margin: 0 5px;
+    text-align: center;
+    border-bottom: oldlace solid 3px;
+    box-sizing: border-box;
+}

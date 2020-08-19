@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Aux from '../../hoc/auxilary';
 import Burger from '../../components/Burger/Burger';
 import BurgerControls from '../../components/Burger/BurgerControls/BurgerControls';
+import Modal from '../../components/UI/Modal/Modal';
+import BurgerSummary from '../../components/Burger/BurgerSummary/BurgerSummary';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -19,7 +21,17 @@ class BurgerBuilder extends Component {
             bacon: 0,
             salad:0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        showSummary: false
+    }
+
+    handleToggleShowSummary = () => {
+        let showS = ~this.state.showSummary
+        this.setState({showSummary: showS})
+    }
+
+    handleCheckOut = () => {
+        alert("This one is on us.")
     }
 
     handleIncreaseIngredient = (ingredient) => {
@@ -62,7 +74,10 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <Burger ingredients = {this.state.ingredients}/>
-                <BurgerControls price={this.state.totalPrice} disableOrderNow={this.state.totalPrice.toFixed(2)<=4} disabledButtons={disabledButtons} increaseIngredient={this.handleIncreaseIngredient} DecreaseIngredient={this.handleDecreaseIngredient} />
+                <BurgerControls orderNowClicked={this.handleToggleShowSummary} price={this.state.totalPrice} disableOrderNow={this.state.totalPrice.toFixed(2)<=4} disabledButtons={disabledButtons} increaseIngredient={this.handleIncreaseIngredient} DecreaseIngredient={this.handleDecreaseIngredient} />
+                <Modal onclickBackdrow={this.handleToggleShowSummary} show={this.state.showSummary}>
+                    <BurgerSummary totalPrice={this.state.totalPrice} onCheckOut={this.handleCheckOut} onCancel={this.handleToggleShowSummary} ingredients={this.state.ingredients} />
+                </Modal>
             </Aux>
         );
     }

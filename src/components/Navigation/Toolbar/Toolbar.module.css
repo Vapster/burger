@@ -1,0 +1,30 @@
+.Toolbar{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 52px;
+    background-color: #703B09;
+    display: flex;
+    padding: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 90;
+    box-sizing: border-box;
+}
+
+.Toolbar nav{
+    height: 100%;
+}
+
+.Toolbar .logoContainer{
+    background-color: white;
+    padding: 4px;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.Toolbar .logoContainer img{
+    height: 100%;
+}
