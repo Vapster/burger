@@ -1,0 +1,26 @@
+li{
+    display: flex;
+    height: 100%;
+    width: auto;
+    margin: 0;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+li a{
+    color: white;
+    text-decoration: none;
+    height: 100%;
+    padding: 16px 10px;
+    border-bottom: solid 4px transparent;
+    display: block;
+    box-sizing: border-box;
+}
+
+li a:hover,
+li a:active,
+li a.active {
+    background-color: #8F5C2C;
+    border-bottom: 4px solid #40A4CB;
+    color: white;
+}
