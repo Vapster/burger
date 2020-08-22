@@ -2,12 +2,13 @@ import React from 'react';
 import classes from './Toolbar.module.css';
 import Logo from '../../../assets/images/burger-logo.png';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import Hamburger from '../../../assets/images/menu.png';
 
 const toolbar = (props) => {
     return(
         <React.Fragment>
             <header className={classes.Toolbar}>
-                <div>MENU</div>
+                <img className={classes.Menu} onClick={props.toggleSideDrawer} src={Hamburger} alt="Menu"/>
                 <div className={classes.logoContainer}>
                     <img src={Logo} alt="Logo" />
                 </div>

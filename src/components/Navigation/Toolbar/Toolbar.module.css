@@ -28,3 +28,19 @@
 .Toolbar .logoContainer img{
     height: 100%;
 }
+
+.Toolbar .Menu{
+    display: none;
+}
+
+@media(max-width: 500px){
+    .Toolbar nav{
+        display: none;
+    }
+
+    .Toolbar .Menu{
+        display: block;
+        height: 65%;
+    }
+
+}

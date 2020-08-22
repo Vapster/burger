@@ -1,19 +1,22 @@
 li{
     display: flex;
-    height: 100%;
-    width: auto;
+    width: 100%;
     margin: 0;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    border-bottom: 1px solid black;
 }
 
 li a{
     color: white;
     text-decoration: none;
     height: 100%;
-    padding: 16px 10px;
+    width: 100%;
+    padding: 16px 0px;
     border-bottom: solid 4px transparent;
-    display: block;
+    display: flex;
+    justify-content: center;
     box-sizing: border-box;
 }
 
@@ -21,6 +24,34 @@ li a:hover,
 li a:active,
 li a.active {
     background-color: #8F5C2C;
-    border-bottom: 4px solid #40A4CB;
     color: white;
+}
+
+@media(min-width: 500px){
+    li{
+        display: flex;
+        height: 100%;
+        width: auto;
+        margin: 0;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    
+    li a{
+        color: white;
+        text-decoration: none;
+        height: 100%;
+        padding: 16px 10px;
+        border-bottom: solid 4px transparent;
+        display: block;
+        box-sizing: border-box;
+    }
+    
+    li a:hover,
+    li a:active,
+    li a.active {
+        background-color: #8F5C2C;
+        border-bottom: 4px solid #40A4CB;
+        color: white;
+    }
 }
