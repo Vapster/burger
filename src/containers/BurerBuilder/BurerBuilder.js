@@ -6,6 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import BurgerSummary from '../../components/Burger/BurgerSummary/BurgerSummary';
 import axiosInstance from '../../axios-orders'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import withErrorHandler from '../../hoc/withErrorHandler'
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -17,15 +18,26 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
 
     state = {
-        ingredients: {
-            cheese: 0,
-            meat: 0,
-            bacon: 0,
-            salad:0
-        },
+        ingredients: null,
         totalPrice: 4,
         showSummary: false,
-        loading: false
+        loading: false,
+        error: false
+    }
+
+    componentDidMount(){
+        axiosInstance.get("/ingredients.json")
+        .then((res) => {
+            if (res) {
+                this.setState({ingredients: res.data})
+            }
+            else{
+                return Promise.reject()
+            }            
+        })
+        .catch(error => {
+            this.setState({error: true})
+        })
     }
 
     handleToggleShowSummary = () => {
@@ -36,7 +48,6 @@ class BurgerBuilder extends Component {
     handleCheckOut = () => {
 
         this.setState({loading: true})
-        console.log("here")
 
         const data = {
             ingredients: this.state.ingredients,
@@ -57,7 +68,6 @@ class BurgerBuilder extends Component {
         axiosInstance.post('/orders.json', data)
         .then((res) => {
             this.setState({loading: false, showSummary: false})
-            console.log('done')
         })
         .catch((error)=>{
             this.setState({loading: false, showSummary: false})
@@ -107,16 +117,21 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner/>
         }
 
+        let spinMainError = <Spinner/>
+        if (this.state.error){
+            spinMainError = <p>Unable to load ingredients.</p>
+        }
+
         return (
-            <Aux>
+            this.state.ingredients ? <Aux>
                 <Burger ingredients = {this.state.ingredients}/>
                 <BurgerControls orderNowClicked={this.handleToggleShowSummary} price={this.state.totalPrice} disableOrderNow={this.state.totalPrice.toFixed(2)<=4} disabledButtons={disabledButtons} increaseIngredient={this.handleIncreaseIngredient} DecreaseIngredient={this.handleDecreaseIngredient} />
                 <Modal onclickBackdrow={this.handleToggleShowSummary} show={this.state.showSummary}>
                     {orderSummary}
                 </Modal>
-            </Aux>
+            </Aux> : spinMainError
         );
     }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axiosInstance);
