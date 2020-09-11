@@ -1,0 +1,13 @@
+.ContactDetails{
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 0 2px 3px #ccc;
+    box-shadow: border-box;
+}
+
+form input{
+    padding: 5px;
+    display: block;
+}

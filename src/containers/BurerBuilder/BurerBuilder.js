@@ -68,6 +68,12 @@ class BurgerBuilder extends Component {
         axiosInstance.post('/orders.json', data)
         .then((res) => {
             this.setState({loading: false, showSummary: false})
+            this.props.history.push({
+                pathname: "/checkout",
+                state: {
+                    ingredients:this.state.ingredients
+                }
+            })
         })
         .catch((error)=>{
             this.setState({loading: false, showSummary: false})
